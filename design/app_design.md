@@ -1,4 +1,4 @@
-# Chitter Model and Repository Classes Design Recipe
+# MakersBnB Model and Repository Classes Design Recipe
 
 ## 2. Create Test SQL seeds
 

@@ -31,6 +31,9 @@ class Application < Sinatra::Base
     return "User created successfully!"
   end
 
+  get '/index.html' do
+    erb :index
+  end
   #redirect to new page once user is created successfully.
 
   get '/user/new' do

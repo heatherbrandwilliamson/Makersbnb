@@ -24,5 +24,12 @@ describe Application do
 
       expect(response.status).to eq(200)
     end
+
+    it 'should allow you to register' do
+      response = get('/register')
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Registration Form</h1>')
+    end
   end
 end

@@ -37,10 +37,12 @@ describe Application do
 
   context 'POST /register' do
     it 'should save user details to log in again' do
-      response = post('/register')
+      response = post('/register', name: 'bob', email: '@yahoo', phone_num: '00', password: '123' )
 
       expect(response.status).to eq(200)
       expect(response.body).to include("User registration successful!")
+
+      reponse = post('/register').to include('bob')
     end
   end
 end

@@ -24,12 +24,23 @@ describe Application do
 
       expect(response.status).to eq(200)
     end
+  end
 
+  context 'GET /register' do
     it 'should allow you to register' do
       response = get('/register')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Registration Form</h1>')
+    end
+  end
+
+  context 'POST /register' do
+    it 'should save user details to log in again' do
+      response = post('/register')
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include("User registration successful!")
     end
   end
 end

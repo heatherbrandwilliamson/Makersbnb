@@ -2,7 +2,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name text,
   email text,
-  phone_number int
+  phone_number int,
+  password text
 );
 
 CREATE TABLE properties (

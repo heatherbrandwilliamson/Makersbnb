@@ -58,13 +58,13 @@ Put the different nouns in this table. Replace the example with your own nouns.
 
 | Record                | Properties          |
 | --------------------- | ------------------  |
-| users                 | name, email, phone number
+| users                 | name, email, password, phone number
 | properties            | property name, description, location, price per night
 | bookings              | user id, property id, date
 
 1. Name of the first table (always plural): `users` 
 
-    Column names: `name`, `email`, `phone_number`
+    Column names: `name`, `email`, `password`, `phone_number`
 
 2. Name of the second table (always plural): `properties` 
 
@@ -88,6 +88,7 @@ Table: users
 id: SERIAL
 name: text
 email: text
+password: text
 phone_number: int
 
 Table: properties
@@ -123,6 +124,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name text,
   email text,
+  password text,
   phone_number int
 );
 
@@ -151,6 +153,6 @@ CREATE TABLE users_properties (
 ## 5. Create the tables.
 
 ```bash
-psql -h 127.0.0.1 chitter < spec/table_schemas.sql
-psql -h 127.0.0.1 chitter_test < spec/table_schemas.sql
+psql -h 127.0.0.1 makersbnb < spec/schema.sql
+psql -h 127.0.0.1 makersbnb_test < spec/schema.sql
 ```

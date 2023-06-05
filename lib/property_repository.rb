@@ -1,3 +1,5 @@
+require_relative 'property'
+
 class PropertyRepository
   def create(property)
     sql = 'INSERT INTO properties (property_name, location, description, price, user_id) VALUES($1, $2, $3, $4, $5);'

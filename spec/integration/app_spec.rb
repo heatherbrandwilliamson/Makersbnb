@@ -36,7 +36,9 @@ describe Application do
 
   context 'POST /properties' do
     it 'adds a new property to the database' do
-      response = post('/properties', )
+      response = post('/properties', property_name: 'Done Roaming', price: 175, location: "Norfolk", description: "A home away from home.", user_id: 1)
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Property added</h1>")
     end
   end
 

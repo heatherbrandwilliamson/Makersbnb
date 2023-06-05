@@ -25,4 +25,22 @@ describe Application do
       expect(response.status).to eq(200)
     end
   end
+
+  context 'GET /properties/new' do
+    it 'should return a new property form' do
+      response = get('/properties/new')
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Add a property</h1>")
+    end
+  end
+
+  context 'POST /properties' do
+    it 'adds a new property to the database' do
+      response = post('/properties', )
+    end
+  end
+
+  
+
+
 end

@@ -26,23 +26,22 @@ describe Application do
     end
   end
 
-  context 'GET /register' do
+  context 'GET /user' do
     it 'should allow you to register' do
-      response = get('/register')
+      response = get('/user')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Registration Form</h1>')
     end
   end
 
-  context 'POST /register' do
+  context 'POST /user' do
     it 'should save user details to log in again' do
-      response = post('/register', name: 'bob', email: '@yahoo', phone_num: '00', password: '123' )
+      response = post('/user', name: 'bob', email: '@yahoo', phone_number: '00', password: '123' )
 
       expect(response.status).to eq(200)
-      expect(response.body).to include("User registration successful!")
+      expect(response.body).to include("User created successfully!")
 
-      reponse = post('/register').to include('bob')
     end
   end
 end

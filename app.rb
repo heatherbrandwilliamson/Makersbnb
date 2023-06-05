@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-require_relative 'lib/registration'
+require_relative 'lib/user_repo'
 
 
 class Application < Sinatra::Base
@@ -12,25 +12,26 @@ class Application < Sinatra::Base
     erb :index
   end
 
-  get '/register' do
+  get '/user' do
     erb :register
   end
 
-  post '/register' do
-    name = params[:name]
-    email = params[:email]
-    phone_num = params[:phone_num]
-    password = params[:password]
+  post '/user' do
+    user = User.new
+    user.name = params[:name]
+    user.email = params[:email]
+    user.phone_number = params[:phone_number]
+    user.password = params[:password]
 
-    registration = Registration.new(name, email, phone_num, password)
-    result = registration.register
-
-    # Do something with the result, such as displaying a success message or handling errors
-
-    # Return a response
-    # Example: "User registration successful!"
+    repo = UserRepository.new()
+    result = repo.create(user)
+    #return erb(:successful_registration) 
+    return "User created successfully!"
   end
 
-  # Other routes and methods
+  #redirect to new page once user is created successfully.
 
+  get '/user/new' do
+    return erb(:user)
+  end
 end

@@ -2,7 +2,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name text,
   email text,
-  phone_number int,
+  phone_number text,
   password text
 );
 

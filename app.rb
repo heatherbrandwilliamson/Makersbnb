@@ -19,9 +19,10 @@ class Application < Sinatra::Base
   post '/register' do
     name = params[:name]
     email = params[:email]
+    phone_num = params[:phone_num]
     password = params[:password]
 
-    registration = Registration.new(name, email, password)
+    registration = Registration.new(name, email, phone_num, password)
     result = registration.register
 
     # Do something with the result, such as displaying a success message or handling errors

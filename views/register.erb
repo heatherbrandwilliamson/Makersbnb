@@ -13,6 +13,10 @@
     border-radius: 5px;
     background-color: #f9f9f9;
   }
+  /* Center the registration form title */
+  h1 {
+    text-align: center;
+  }
 
   /* Style form labels */
   label {
@@ -47,6 +51,7 @@
 </head>
 <body>
   <h1>Registration Form</h1>
+  <div class="form-container">
   <form action="/user" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
@@ -62,5 +67,6 @@
 
     <input type="submit" value="Register">
   </form>
+  </div>
 </body>
 </html>

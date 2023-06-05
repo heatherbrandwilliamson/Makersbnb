@@ -1,7 +1,9 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/user_repo'
+require_relative 'lib/database_connection'
 
+DatabaseConnection.connect("makersbnb_test")
 
 class Application < Sinatra::Base
   configure :development do

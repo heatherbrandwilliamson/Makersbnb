@@ -68,7 +68,7 @@ describe Application do
     it 'should save user input and successfully login' do
       response = post('/user/login', email:'jane@example.com', password:'pass') 
 
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(302)
       # expect(response.body).to include()
     end
   end

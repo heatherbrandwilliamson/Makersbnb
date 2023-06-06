@@ -6,7 +6,7 @@
 # if you like, but you don't need to and it's OK if it seems strange.
 
 require 'pg'
-require 'rainbow/refinement'
+requireg 'rainbow/refinement'
 
 class DatabaseConnection
   using Rainbow

@@ -44,13 +44,15 @@ class Application < Sinatra::Base
   #User login#
   get '/user/login' do
     return erb(:login)
+    # return erb(:test)
   end
 
-  #This goes to fail login page. Login button works
+  #This goes to fail login page. Login button works and redirects to index
   post '/user/fail_login' do
     return erb(:index)
   end
-
+  
+  #
   post '/user/login' do
     user = UserRepository.new.find_by_email(params[:email])
     if user == nil || params[:email].empty? || params[:password].empty?

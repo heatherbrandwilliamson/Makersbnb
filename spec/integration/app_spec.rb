@@ -70,6 +70,8 @@ describe Application do
 
       expect(response.status).to eq(302)
       # expect(response.body).to include()
+
+      #test comment
     end
   end
 end

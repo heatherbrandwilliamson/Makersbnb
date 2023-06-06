@@ -16,7 +16,17 @@ describe Application do
   # accross multiple RSpec files (for example, have
   # one test suite for each set of related features),
   # you can duplicate this test file to create a new one.
-
+  def reset_db
+    seed_sql = File.read('spec/seeds.sql')
+    connection = PG.connect({host: '127.0.0.1', dbname: 'makersbnb_test'})
+    connection.exec(seed_sql)
+  end
+  
+  describe UserRepository do
+    before(:each) do
+      reset_db
+    end
+  end 
 
   context 'GET /' do
     it 'should get the homepage' do
@@ -37,29 +47,29 @@ describe Application do
 
   context 'POST /user' do
     it 'should save user details to log in again' do
-      response = post('/user', name: 'bob', email: '@yahoo', phone_number: '00', password: '123' )
-
+      response = post('/user', name: 'Jane', email: 'jane@example.com', phone_number: '07700123456', password: 'pass')
       expect(response.status).to eq(200)
       expect(response.body).to include("User created successfully!")
-
     end
   end
 
   #Integration testing for user login#
   context 'GET /user/login' do
-    it 'should render the html login form correctly' do
+    it 'should render the html login form correctly for the email' do
       response = get('user/login')
 
-      expect(response.status).to eq 200
+      expect(response.status).to eq(200)
       expect(response.body).to include('<input type="email" id="email" name="email" required>')
+      expect(response.body).to include('<input type="password" id="password" name="password" required>')
     end
-
-    it ''
   end
 
-  context 'POST /user_login' do
-    xit 'should save user input and successfully login' do
-      response = post('/user')
+  context 'POST /user/login' do
+    it 'should save user input and successfully login' do
+      response = post('/user/login', email:'jane@example.com', password:'pass') 
+
+      expect(response.status).to eq(200)
+      # expect(response.body).to include()
     end
   end
 end

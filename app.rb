@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/user_repo'
 require_relative 'lib/database_connection'
+require 'bcrypt'
 
 DatabaseConnection.connect("makersbnb_test")
 
@@ -52,11 +53,11 @@ class Application < Sinatra::Base
       status 401
       return erb(:error)
     end
-    
+
     if BCrypt::Password.new(user.password).is_password? params[:password]
       session[:user_id] = user.id
       session[:user_name] = user.name
-      redirect '/' #change this to properties#
+      redirect '/index.html' #change this to properties#
     else
       @error_message = "That password wasn't correct."
       status 401

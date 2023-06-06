@@ -66,7 +66,7 @@ class Application < Sinatra::Base
     return erb(:booking_confirmation)
   end
     
-end
+# end
   get '/user' do
     erb :register
   end
@@ -124,10 +124,3 @@ end
     end
   end
 end
-
-    #return erb(:successful_registration) 
-#    
-#   end
-# end
-#test commit#
-

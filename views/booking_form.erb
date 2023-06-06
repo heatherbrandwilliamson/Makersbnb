@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Book your stay</h1>
+    <div>
+        <form action="/bookings" method="POST">
+          <div>
+          <label>Date</label>
+          <input type="text" name="date">
+          </div>
+          
+          <input type="hidden" id="property_id" name="property_id" value="<%= @property_id %>" />
+          <!-- TODO: Grab user ID from session -->
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+  </body>
+</html>

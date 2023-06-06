@@ -1,0 +1,33 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Add a property</h1>
+    <div>
+        <form action="/properties" method="POST">
+          <div>
+          <label>Property name</label>
+          <input type="text" name="property_name">
+          </div>
+          
+          <div>
+          <label>Property description</label>
+          <textarea name="description" rows="8" cols="48" placeholder="Property description"></textarea>
+          </div>
+          <div>
+          <label>Location</label>
+          <input type="text" name="location">
+          </div>
+          <div>
+          <label>Price</label>
+          <input type="text" name="price">
+          </div>
+          <div>
+          <label>User ID</label>
+          <input type="text" name="user_id">
+          </div>
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Here are the a list of properties</h1>
+     <% @properties.each do |property| %>
+      <div>
+        Property: <%= property.property_name%>
+        Description: <%= property.description %>
+        location: <%= property.location %>
+        price: <%= property.price %>
+      </div> 
+    <% end %> 
+  </body>
+</html>

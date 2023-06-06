@@ -1,3 +1,5 @@
+DROP TABLE users, properties, bookings;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name text,
@@ -18,9 +20,10 @@ CREATE TABLE properties (
     on delete cascade
 );
 
-CREATE TABLE users_properties (
+CREATE TABLE bookings (
   user_id int,
   property_id int,
+  date date,
   constraint fk_user foreign key(user_id) references users(id) on delete cascade,
   constraint fk_property foreign key(property_id) references properties(id) on delete cascade,
   PRIMARY KEY (user_id, property_id)

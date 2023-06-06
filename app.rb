@@ -46,12 +46,17 @@ class Application < Sinatra::Base
     return erb(:login)
   end
 
+  #This goes to fail login page. Login button works
+  post '/user/fail_login' do
+    return erb(:index)
+  end
+
   post '/user/login' do
     user = UserRepository.new.find_by_email(params[:email])
     if user == nil || params[:email].empty? || params[:password].empty?
       @error_message = "That email address wasn't found."
       status 401
-      return erb(:error)
+      return erb(:failed_login)
     end
 
     if BCrypt::Password.new(user.password).is_password? params[:password]
@@ -61,7 +66,7 @@ class Application < Sinatra::Base
     else
       @error_message = "That password wasn't correct."
       status 401
-      return erb(:error)
+      return erb(:failed_login)
     end
   end
 end

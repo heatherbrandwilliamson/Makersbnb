@@ -3,6 +3,8 @@ require 'sinatra/reloader'
 require_relative 'lib/property_repository'
 require_relative 'lib/database_connection'
 require_relative 'lib/booking_repository'
+require_relative 'lib/user_repo'
+require 'bcrypt'
 
 DatabaseConnection.connect('makersbnb_test')
 
@@ -12,7 +14,7 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    return erb(:index)
+    erb :index
   end
 
   get '/properties/new' do
@@ -65,3 +67,67 @@ class Application < Sinatra::Base
   end
     
 end
+  get '/user' do
+    erb :register
+  end
+
+  post '/user' do
+    user = User.new
+    user.name = params[:name]
+    user.email = params[:email]
+    user.phone_number = params[:phone_number]
+    user.password = params[:password]
+
+    repo = UserRepository.new()
+    result = repo.create(user)
+    erb(:successful_registration) 
+    #return "User created successfully!"
+  end
+  #redirect to new page once user is created successfully.
+
+  get '/index.html' do
+    return erb (:index)
+  end
+
+  get '/user/new' do
+    return erb(:user)
+  end
+
+  #User login#
+  get '/user/login' do
+    return erb(:login)
+    # return erb(:test)
+  end
+
+  #This goes to fail login page. Login button works and redirects to index
+  # post '/user/fail_login' do
+  #   return erb(:index)
+  # end
+  
+  #
+  post '/user/login' do
+    user = UserRepository.new.find_by_email(params[:email])
+    if user == nil || params[:email].empty? || params[:password].empty?
+      @error_message = "That email address wasn't found."
+      status 401
+      return erb(:failed_login)
+    end
+
+    if BCrypt::Password.new(user.password).is_password? params[:password]
+      session[:user_id] = user.id
+      session[:user_name] = user.name
+      redirect '/index.html' #change this to properties#
+    else
+      @error_message = "That password wasn't correct."
+      status 401
+      return erb(:failed_login)
+    end
+  end
+end
+
+    #return erb(:successful_registration) 
+#    
+#   end
+# end
+#test commit#
+

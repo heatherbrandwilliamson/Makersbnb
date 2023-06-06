@@ -25,3 +25,5 @@ CREATE TABLE users_properties (
   constraint fk_property foreign key(property_id) references properties(id) on delete cascade,
   PRIMARY KEY (user_id, property_id)
 );
+
+/*test commit*/

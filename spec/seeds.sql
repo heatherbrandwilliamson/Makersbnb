@@ -6,3 +6,5 @@ INSERT INTO properties (property_name, price, location, description, user_id) VA
 
 
 --Seeds file created for both users and properties
+
+--test commit--

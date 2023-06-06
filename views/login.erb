@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+/* Padded out html and body. A thick white lined appeared
+ at bottom so added this in to remove it */
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+  /* This is for a background image */
+  body {
+    background-image: url('https://img.freepik.com/premium-photo/stylish-travel-wallpaper-country-mountain-landscape-nature-aesthetic-background-slovenia_161568-11819.jpg?w=2000');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Style the form container */
+  .form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+  /* Center the registration form title */
+  h1, h2 {
+    text-align: center;
+  }
+
+  /* Style form labels */
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Style form inputs */
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Style form submit button */
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Style form login button */
+  input[type="login"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+</style>
+<title>Registration Form</title>
+</head>
+<body>
+<h1>Welcome to MakersBnB!</h1>
+  <h2>Login</h2>
+  <div class="form-container">
+  <form action="/user/login" method="POST">
+  
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="login" value="Login">
+  </form>
+  </div>
+</body>
+</html>

@@ -32,7 +32,41 @@ class Application < Sinatra::Base
   end
   #redirect to new page once user is created successfully.
 
+  get '/index.html' do
+    return erb (:index)
+  end
+
   get '/user/new' do
     return erb(:user)
   end
+
+  #User login#
+  get '/user/login' do
+    return erb(:login)
+  end
+
+  post '/user/login' do
+    user = UserRepository.new.find_by_email(params[:email])
+    if user == nil || params[:email].empty? || params[:password].empty?
+      @error_message = "That email address wasn't found."
+      status 401
+      return erb(:error)
+    end
+    
+    if BCrypt::Password.new(user.password).is_password? params[:password]
+      session[:user_id] = user.id
+      session[:user_name] = user.name
+      redirect '/' #change this to properties#
+    else
+      @error_message = "That password wasn't correct."
+      status 401
+      return erb(:error)
+    end
+  end
 end
+
+    #return erb(:successful_registration) 
+#    
+#   end
+# end
+

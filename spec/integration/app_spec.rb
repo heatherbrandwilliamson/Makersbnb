@@ -46,13 +46,18 @@ describe Application do
   end
 
   #Integration testing for user login#
-  context 'GET /user_login' do
-    xit 'should render the html login form correctly' do
-      response = get('user_login')
+  context 'GET /user/login' do
+    it 'should render the html login form correctly' do
+      response = get('user/login')
 
       expect(response.status).to eq 200
-      expect(last_response.body).to include('<form', 'action="/login"', 'method="post"', 
-        'input type="email"', 'input type="password"', 'button type="submit"')
+      expect(response.body).to include('<input type="email" name="email"')
+    end
+  end
+
+  context 'POST /user_login' do
+    xit 'should save user input and successfully login' do
+      response = post('/user')
     end
   end
 end

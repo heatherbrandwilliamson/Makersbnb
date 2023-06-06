@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/property_repository'
 require_relative 'lib/database_connection'
+require_relative 'lib/booking_repository'
 
 DatabaseConnection.connect('makersbnb_test')
 
@@ -44,8 +45,23 @@ class Application < Sinatra::Base
     repo = PropertyRepository.new
     @properties = repo.all
       return erb(:properties)
-  end   
+  end
 
+  get '/bookings/new/:id' do
+    @property_id = params[:id]
+    return erb(:booking_form)
+  end
 
+  post '/bookings' do
+    booking = Booking.new
+    booking.user_id = 1
+    booking.property_id = params[:property_id]
+    booking.date = params[:date]
+
+    repo = BookingRepository.new
+    repo.create(booking)
+
+    return erb(:booking_confirmation)
+  end
     
 end

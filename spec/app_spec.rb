@@ -66,10 +66,20 @@ describe Application do
     end
   end
 
+  context 'GET /bookings/new/:id' do
+    it "returns 200 and a booking form" do
+      response = get('/bookings/new/1')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Book your stay</h1>')
+    end
+  end
 
-
-
-  
-
+  context 'POST /bookings' do
+    it "returns 200 and adds a new booking to the database" do
+      response = post('/bookings', property_id: 1, date: '25 June 2023')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Booking request sent</h1>')
+    end
+  end
 
 end

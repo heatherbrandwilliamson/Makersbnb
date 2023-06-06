@@ -57,7 +57,7 @@ class Application < Sinatra::Base
     if BCrypt::Password.new(user.password).is_password? params[:password]
       session[:user_id] = user.id
       session[:user_name] = user.name
-      redirect '/index.html' #change this to property#
+      redirect '/index.html' #change this to properties#
     else
       @error_message = "That password wasn't correct."
       status 401

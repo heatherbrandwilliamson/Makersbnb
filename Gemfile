@@ -14,3 +14,6 @@ gem "rspec", "~> 3.11"
 
 gem "rainbow", "~> 3.1"
 gem 'bcrypt', '~> 3.1.16'
+gem "simplecov", "~> 0.22.0"
+
+gem "simplecov-console", "~> 0.9.1"

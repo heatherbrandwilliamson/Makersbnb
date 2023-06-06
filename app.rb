@@ -28,8 +28,8 @@ class Application < Sinatra::Base
 
     repo = UserRepository.new()
     result = repo.create(user)
-    #return erb(:successful_registration) 
-    return "User created successfully!"
+    erb(:successful_registration) 
+    #return "User created successfully!"
   end
   #redirect to new page once user is created successfully.
 

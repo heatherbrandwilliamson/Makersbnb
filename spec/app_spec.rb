@@ -1,6 +1,6 @@
 require "spec_helper"
 require "rack/test"
-require_relative '../../app'
+require_relative '../app'
 require 'json'
 
 describe Application do
@@ -11,12 +11,21 @@ describe Application do
   # class so our tests work.
   let(:app) { Application.new }
 
+  def reset_db
+    seed_sql = File.read('spec/seeds.sql')
+    connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
+    connection.exec(seed_sql)
+  end  
+
+  before(:each) do 
+    reset_db
+  end
+
   # Write your integration tests below.
   # If you want to split your integration tests
   # accross multiple RSpec files (for example, have
   # one test suite for each set of related features),
   # you can duplicate this test file to create a new one.
-
 
   context 'GET /' do
     it 'should get the homepage' do

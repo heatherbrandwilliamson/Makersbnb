@@ -20,4 +20,13 @@ describe PropertyRepository do
       # expect(repo.all.last.property_name).to eq("House on the Hill")
     end
   end
+
+  describe "#find method" do
+    it "find one properties" do
+      repo = PropertyRepository.new
+      property = repo.find(1)
+      expect(property.property_name).to eq('Beach House')
+      expect(property.location).to eq('Cornwall')
+    end
+  end
 end

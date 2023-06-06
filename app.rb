@@ -48,9 +48,9 @@ class Application < Sinatra::Base
   end
 
   #This goes to fail login page. Login button works and redirects to index
-  post '/user/fail_login' do
-    return erb(:index)
-  end
+  # post '/user/fail_login' do
+  #   return erb(:index)
+  # end
   
   #
   post '/user/login' do

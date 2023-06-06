@@ -49,7 +49,7 @@ describe Application do
     it 'should save user details to log in again' do
       response = post('/user', name: 'Jane', email: 'jane@example.com', phone_number: '07700123456', password: 'pass')
       expect(response.status).to eq(200)
-      expect(response.body).to include("User created successfully!")
+      expect(response.body).to include("Successfully Registered!")
     end
   end
 

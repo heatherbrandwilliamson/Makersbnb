@@ -51,8 +51,10 @@ describe Application do
       response = get('user/login')
 
       expect(response.status).to eq 200
-      expect(response.body).to include('<input type="email" name="email"')
+      expect(response.body).to include('<input type="email" id="email" name="email" required>')
     end
+
+    it ''
   end
 
   context 'POST /user_login' do

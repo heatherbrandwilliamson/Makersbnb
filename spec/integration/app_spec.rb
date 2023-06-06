@@ -44,4 +44,15 @@ describe Application do
 
     end
   end
+
+  #Integration testing for user login#
+  context 'GET /user_login' do
+    xit 'should render the html login form correctly' do
+      response = get('user_login')
+
+      expect(response.status).to eq 200
+      expect(last_response.body).to include('<form', 'action="/login"', 'method="post"', 
+        'input type="email"', 'input type="password"', 'button type="submit"')
+    end
+  end
 end

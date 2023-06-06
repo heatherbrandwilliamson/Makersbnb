@@ -11,9 +11,15 @@ require 'rainbow/refinement'
 class DatabaseConnection
   using Rainbow
 
-  def self.connect(database_name)
+  def self.connect
+    if ENV['ENV'] == 'test'
+      @database_name = 'makersbnb_test'
+    else
+      @database_name = 'makersbnb'
+    end
+    
     @host = '127.0.0.1'
-    @database_name = database_name
+    # @database_name = database_name
     puts "Connecting to database `#{@database_name}`...".blue unless test_mode?
 
     if test_mode? && !@database_name.end_with?("_test")

@@ -6,7 +6,7 @@ require_relative 'lib/booking_repository'
 require_relative 'lib/user_repo'
 require 'bcrypt'
 
-DatabaseConnection.connect('makersbnb_test')
+DatabaseConnection.connect
 
 class Application < Sinatra::Base
   configure :development do

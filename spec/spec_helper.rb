@@ -4,7 +4,7 @@ require 'database_connection'
 
 ENV['ENV'] = 'test'
 
-DatabaseConnection.connect('makersbnb_test')
+DatabaseConnection.connect
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,

@@ -51,6 +51,24 @@ describe Application do
     end
   end
 
+  context 'GET /properties' do  
+    it "returns 200 ok and returns all properties" do
+     response = get('/properties')
+     expect(response.status).to eq(200)
+    end
+  end
+
+  context 'GET /properties/id' do  
+    it "returns 200 ok and returns one property" do
+     response = get('/properties/1')
+     expect(response.status).to eq(200)
+     expect(response.body).to include('Beach House')
+    end
+  end
+
+
+
+
   
 
 

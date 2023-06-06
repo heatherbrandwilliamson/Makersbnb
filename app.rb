@@ -18,6 +18,13 @@ class Application < Sinatra::Base
     return erb(:new_property)
   end
 
+  get '/properties/:id' do
+    repo = PropertyRepository.new
+    @property = repo.find((params[:id]))
+
+      return erb(:property_listing)
+  end   
+
   post '/properties' do
     
     @property = Property.new
@@ -32,4 +39,13 @@ class Application < Sinatra::Base
     
     return erb(:property_confirmation)
   end
+
+  get '/properties' do
+    repo = PropertyRepository.new
+    @properties = repo.all
+      return erb(:properties)
+  end   
+
+
+    
 end

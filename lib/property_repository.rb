@@ -18,4 +18,37 @@ class PropertyRepository
     property.user_id = result_set[0]['user_id']
     return property
   end
+
+  def all
+    sql = 'SELECT id, property_name, location, description, price, user_id FROM properties;'
+    result_set = DatabaseConnection.exec_params(sql, [])
+
+    properties = []
+    
+    # The result set is an array of hashes.
+    # Loop through it to create a model
+    # object for each record hash.
+    result_set.each do |record|
+
+      # Create a new model object
+      # with the record data.
+      property = Property.new
+      property.id = record['id'].to_i
+      property.property_name = record['property_name']
+      property.location = record['location']
+      property.description = record['description']
+      property.price = record['price']
+      property.user_id = record['user_id']
+
+      properties << property
+    end
+
+    return properties
+
+  
+  end
+  
+
+
+
 end

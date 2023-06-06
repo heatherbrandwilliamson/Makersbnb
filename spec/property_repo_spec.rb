@@ -29,4 +29,16 @@ describe PropertyRepository do
       expect(property.location).to eq('Cornwall')
     end
   end
+
+   
+  describe "#find all properties" do
+    it "find all properties" do
+      repo = PropertyRepository.new
+      properties = repo.all
+      expect(properties.first.property_name).to eq('Beach House')
+      expect(properties.first.location).to eq('Cornwall')
+    end
+  end
+
+
 end

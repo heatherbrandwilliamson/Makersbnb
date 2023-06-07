@@ -1,4 +1,5 @@
-DROP TABLE users, properties, bookings;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -21,10 +22,11 @@ CREATE TABLE properties (
 );
 
 CREATE TABLE bookings (
+  id SERIAL PRIMARY KEY,
   user_id int,
   property_id int,
   date date,
+  approved boolean,
   constraint fk_user foreign key(user_id) references users(id) on delete cascade,
-  constraint fk_property foreign key(property_id) references properties(id) on delete cascade,
-  PRIMARY KEY (user_id, property_id)
+  constraint fk_property foreign key(property_id) references properties(id) on delete cascade
 );

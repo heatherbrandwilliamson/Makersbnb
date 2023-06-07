@@ -1,15 +1,79 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <style>
+      /* CSS Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      h1 {
+        color: #333333;
+      }
+      
+      h2 {
+        color: #666666;
+      }
+      
+      .property-card {
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .property-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      
+      .property-description {
+        margin-bottom: 10px;
+      }
+      
+      .property-location {
+        margin-bottom: 10px;
+      }
+      
+      .property-price {
+        font-weight: bold;
+        color: #009900;
+        margin-bottom: 10px;
+      }
+      
+      .view-button {
+        display: square;
+        background-color: #009900;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      
+      .view-button:hover {
+        background-color: #008000;
+      }
+    </style>
   </head>
   <body>
-    <h1>Here are the a list of properties</h1>
-     <% @properties.each do |property| %>
-      <div>
-        Property: <%= property.property_name%>
-        Description: <%= property.description %>
-        location: <%= property.location %>
-        price: <%= property.price %>
-      </div> 
+    <h1>Properties</h1>
+    <h2>Properties available for booking</h2>
+    <% @properties.each do |property| %>
+      <div class="property-card">
+        <div class="property-name"><%= property.property_name %></div>
+        <div class="property-description"><%= property.description %></div>
+        <div class="property-location"><%= property.location %></div>
+        <div class="property-price">$<%= property.price %></div>
+        <a href="/properties/<%= property.id %>" class="view-button">View Property</a>
+      </div>
     <% end %> 
   </body>
 </html>
+

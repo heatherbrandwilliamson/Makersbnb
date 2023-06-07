@@ -53,7 +53,7 @@ class Application < Sinatra::Base
     @property_id = params[:id]
     return erb(:booking_form)
   end
-
+    
   post '/bookings' do
     booking = Booking.new
     booking.user_id = 1

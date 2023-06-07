@@ -4,10 +4,21 @@
   <body>
     <h1>Here is a property you can book</h1>
       <div>
-        Property: <%= @property.property_name%>
-        Description: <%= @property.description %>
-        location: <%= @property.location %>
-        price: <%= @property.price %>
+        <p>Property: <%= @property.property_name%></p>
+        <p>Description: <%= @property.description %></p>
+        <p>location: <%= @property.location %></p>
+        <p>price: <%= @property.price %></p>
+        <ul>
+        <form method="post" action="/bookings">
+        <input type="hidden" id="property_id" name="property_id" value="<%= @property.id %>" />
+        <% @available_dates.each do |date| %>
+        <li>
+        <button type="button" name="date" value="<%= date %>"><%= date %></button>
+        </li>
+        <% end %>
+        </form>
+        </ul>
+        
       </div> 
   </body>
 </html>

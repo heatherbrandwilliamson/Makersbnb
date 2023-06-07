@@ -1,4 +1,4 @@
-DROP TABLE users, properties, bookings;
+-- DROP TABLE users, properties, users_properties;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,

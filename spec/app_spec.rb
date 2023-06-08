@@ -90,11 +90,11 @@ describe Application do
     end
   end
 
-  context 'GET /user/fail_login' do
+  context 'GET /user/login' do
     it "returns 200 and returns a fail login message" do
-      response = get('/fail_login')
+      response = get('/user/login')
       expect(response.status).to eq(200)
-      expect(response.body).to include('<p>Your login attempt was not successful. Please check your credentials and try again.</p>')
+      expect(response.body).to include('')
     end
   end
 

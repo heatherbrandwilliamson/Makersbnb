@@ -131,4 +131,13 @@ describe Application do
       expect(response.body).to include('<p>Let #TeamHibiscus help you find unique places to stay and experience amazing destinations.</p>')
     end
   end
+
+  context 'POST /user/login' do
+    it "returns 401 and renders the failed_login template for invalid login" do
+      response = post('/user/login')
+      expect(response.status).to eq(401)
+      expect(response.body).to include("<h1>Login Failed</h1>")
+      expect(response.body).to include("Your login attempt was not successful. Please check your credentials and try again.")
+    end
+  end
 end

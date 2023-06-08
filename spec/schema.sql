@@ -27,6 +27,7 @@ CREATE TABLE bookings (
   property_id int,
   date date,
   approved boolean,
+  host_id int,
   constraint fk_user foreign key(user_id) references users(id) on delete cascade,
   constraint fk_property foreign key(property_id) references properties(id) on delete cascade
 );

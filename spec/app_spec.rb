@@ -74,6 +74,14 @@ describe Application do
     end
   end
 
+  context 'POST /bookings/approve' do
+    it "returns 200 and a list of pending approvals" do
+      response = post('/bookings/approve')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Booking Confirmed')
+    end
+  end
+
   context 'POST /bookings' do
     it "returns 200 and adds a new booking to the database" do
       

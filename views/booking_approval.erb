@@ -63,12 +63,11 @@
   <body>
     <h1>Here is a list of pending approvals</h1>
       <div>
-        <p> <%=%></p>
         <ul>
         <form method="post" action="/bookings/approve">
         <% @bookings.each do |booking| %>
         <li>
-        <input type="submit" name="booking_id" value="<%= booking.id %>">
+        <%= booking.property_name %> on <%= Date.parse(booking.date).strftime('%e %b %Y') %>  <button name="booking_id" value="<%= booking.id %>">Approve</button>
         </li>
         <% end %>
         </form>

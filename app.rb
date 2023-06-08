@@ -64,7 +64,8 @@ class Application < Sinatra::Base
     booking.user_id = 1
     booking.property_id = params[:property_id]
     booking.date = params[:date]
-
+    booking.host_id = params[:host_id].to_i
+    
     repo = BookingRepository.new
     repo.create(booking)
 

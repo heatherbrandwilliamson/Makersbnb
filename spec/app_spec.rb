@@ -82,4 +82,23 @@ describe Application do
     end
   end
 
-end
+  context 'GET /login' do
+    it "returns 200 and returns back to login page after login failure" do
+      response = get('/login')
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Welcome to MakersBnB!</h1>")
+    end
+  end
+
+  context 'GET /user/fail_login' do
+    it "returns 200 and returns a fail login message" do
+      response = get('/user/fail_login')
+      expect(response.status).to eq(200)
+      expect(response.body).to eq('<p>Your login attempt was not successful. Please check your credentials and try again.</p>')
+    end
+  end
+
+#   context 'POST /login' do
+#     it "returns 200 and should allow the user to go on to the next page (properties)" do
+#       response = post('/login', email)
+# end

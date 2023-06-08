@@ -155,4 +155,8 @@ class Application < Sinatra::Base
         return erb(:failed_login)
     end
   end
+
+  get '/login' do
+    return erb(:login)
+  end
 end

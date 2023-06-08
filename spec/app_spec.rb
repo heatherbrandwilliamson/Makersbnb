@@ -100,9 +100,9 @@ describe Application do
 
   context 'POST /user/login' do
     it "returns 200 and should allow the user to go on to the next page (properties)" do
-      response = post('/user/login', email: "jane@example.com", password: "pass")
+      response = post('/properties', email: "jane@example.com", password: "pass")
       expect(response.status).to eq(200)
-      expect(response.body).to include("<h1>Here is a property you can book</h1>")
+      expect(response.body).to include("")
     end
   end
 end

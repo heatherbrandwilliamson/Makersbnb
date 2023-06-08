@@ -5,6 +5,7 @@ require_relative 'lib/database_connection'
 require_relative 'lib/booking_repository'
 require_relative 'lib/user_repo'
 require 'bcrypt'
+require_relative 'lib/availability'
 
 DatabaseConnection.connect
 
@@ -25,7 +26,11 @@ class Application < Sinatra::Base
     repo = PropertyRepository.new
     @property = repo.find((params[:id]))
 
-      return erb(:property_listing)
+    bookings = BookingRepository.new.find_by_property_id((params[:id]))
+    availability = Availability.new
+    @available_dates = availability.list(bookings)
+    
+    return erb(:property_listing)
   end   
 
   post '/properties' do

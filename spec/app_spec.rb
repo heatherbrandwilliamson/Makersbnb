@@ -13,7 +13,7 @@ describe Application do
 
   def reset_db
     seed_sql = File.read('spec/seeds.sql')
-    connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
+    connection = PG.connect({ host: '127.0.0.1', dbname: ENV['DB_NAME'] })
     connection.exec(seed_sql)
   end  
 

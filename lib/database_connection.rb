@@ -13,25 +13,25 @@ class DatabaseConnection
 
   def self.connect
     if ENV['ENV'] == 'test'
-      @database_name = 'makersbnb_test'
+      ENV['DB_NAME'] = 'makersbnb_booking_availability_test'
     else
-      @database_name = 'makersbnb'
+      ENV['DB_NAME'] = 'makersbnb'
     end
     
     @host = '127.0.0.1'
-    # @database_name = database_name
-    puts "Connecting to database `#{@database_name}`...".blue unless test_mode?
+    # ENV['DB_NAME'] = database_name
+    puts "Connecting to database `#{ENV['DB_NAME']}`...".blue unless test_mode?
 
-    if test_mode? && !@database_name.end_with?("_test")
+    if test_mode? && !ENV['DB_NAME'].end_with?("_test")
       puts "Refusing to connect to the dev database in test mode.".red
       puts "For your safety, when the tests are running this class will refuse"
       puts "to connect to a database unless its name ends with `_test`."
-      puts "You tried to connect to the database `#{database_name}`."
+      puts "You tried to connect to the database `#{ENV['DB_NAME']}`."
       puts "This is probably a problem with your setup."
       exit
     end
 
-    @connection = PG.connect({ host: @host, dbname: @database_name })
+    @connection = PG.connect({ host: @host, dbname: ENV['DB_NAME'] })
     puts "Connected to the database successfully.".green unless test_mode?
   rescue PG::Error => e
     exit_with_helpful_connection_message(e)
@@ -51,9 +51,9 @@ class DatabaseConnection
     puts "  #{error.message}".bold
     puts "  #{generate_backtrace(error)}}"
     if error.message.include? "does not exist"
-      puts "My guess: You haven't created the database `#{@database_name}`.".blue
+      puts "My guess: You haven't created the database `#{ENV['DB_NAME']}`.".blue
       puts "To do this, run:"
-      puts "  createdb #{@database_name}"
+      puts "  createdb #{ENV['DB_NAME']}"
     elsif !["localhost", "127.0.0.1", "::1"].include? @host
       puts "My guess: Your database host (`#{@host}`) is not right.".blue
       puts "It should be `localhost`."

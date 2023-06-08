@@ -10,10 +10,10 @@
         <p>price: <%= @property.price %></p>
         <ul>
         <form method="post" action="/bookings">
-        <input type="hidden" id="property_id" name="property_id" value="<%= @property.id %>" />
+        <input type="hidden" id="property_" name="property_id" value="<%= @property.id %>" />
         <% @available_dates.each do |date| %>
         <li>
-        <button type="button" name="date" value="<%= date %>"><%= date %></button>
+        <input type="submit" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>">
         </li>
         <% end %>
         </form>

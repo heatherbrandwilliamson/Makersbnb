@@ -42,6 +42,7 @@ class Application < Sinatra::Base
     @property.description = params[:description]
     @property.price = params[:price]
     @property.user_id = params[:user_id]
+    @property.image_url = params[:image_url]
 
     repo = PropertyRepository.new
     repo.create(@property)

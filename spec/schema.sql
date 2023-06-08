@@ -14,6 +14,7 @@ CREATE TABLE properties (
   property_name text,
   location text,
   description text,
+  image_url text,
   price float,
   user_id int,
   constraint fk_user foreign key(user_id)

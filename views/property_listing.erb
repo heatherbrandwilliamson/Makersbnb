@@ -64,6 +64,7 @@
     <h1>Here is a property you can book</h1>
       <div>
         <p>Property: <%= @property.property_name%></p>
+        <p><img src="<%= @property.image_url %>" width="600"></p>
         <p>Description: <%= @property.description %></p>
         <p>location: <%= @property.location %></p>
         <p>Price per night: £<%= @property.price %></p>

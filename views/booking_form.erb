@@ -9,7 +9,7 @@
           <label>Date</label>
           <input type="text" name="date">
           </div>
-          
+
           <input type="hidden" id="property_id" name="property_id" value="<%= @property_id %>" />
           <!-- TODO: Grab user ID from session -->
           <input type="submit" value="Submit">
@@ -17,3 +17,61 @@
     </div>
   </body>
 </html>
+
+<%# <!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Booking Form</h1>
+
+  <form action="/bookings" method="POST">
+    <input type="hidden" name="property_id" value="<%= @property_id %>">
+
+    <%# <label for="date">Date:</label>
+    <input type="text" name="date" id="date" required>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html> %>

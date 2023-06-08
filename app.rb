@@ -53,7 +53,7 @@ class Application < Sinatra::Base
     @property_id = params[:id]
     return erb(:booking_form)
   end
-
+    
   post '/bookings' do
     booking = Booking.new
     booking.user_id = 1
@@ -116,11 +116,38 @@ class Application < Sinatra::Base
     if BCrypt::Password.new(user.password).is_password? params[:password]
       session[:user_id] = user.id
       session[:user_name] = user.name
-      redirect '/index.html' #change this to properties#
+      redirect '/properties' #change this to properties#
     else
       @error_message = "That password wasn't correct."
       status 401
       return erb(:failed_login)
+    end
+  end
+
+  ## THIS IS AN ISSUE THAT NEEDS RESOLVING ASAP. WHETHER A USER ## ##
+  ## PASSES A LOGIN DETAIL CORRECTLY OR INCORRECTLY THE PAGE    ## ##
+  ## REFRESHES                                                  ## ##
+  get '/user/fail_login' do
+    return erb(:fail_login)
+  end
+
+  post '/user/fail_login' do
+      user = UserRepository.new.find_by_email(params[:email])
+    
+      if user.nil? || params[:email].empty? || params[:password].empty?
+        @error_message = "That email address wasn't found."
+        status 401
+        return erb(:failed_login)
+      end
+    
+      if BCrypt::Password.new(user.password).is_password?(params[:password])
+        session[:user_id] = user.id
+        session[:user_name] = user.name
+        redirect '/properties' # Redirect to the properties page
+      else
+        @error_message = "That password wasn't correct."
+        status 401
+        return erb(:failed_login)
     end
   end
 end

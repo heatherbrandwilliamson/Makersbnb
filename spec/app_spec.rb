@@ -76,7 +76,8 @@ describe Application do
 
   context 'POST /bookings' do
     it "returns 200 and adds a new booking to the database" do
-      response = post('/bookings', property_id: 1, date: '25 June 2023')
+      
+      response = post('/bookings', property_id: 1, date: '25 June 2023', host_id: 1)
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Booking request sent</h1>')
     end

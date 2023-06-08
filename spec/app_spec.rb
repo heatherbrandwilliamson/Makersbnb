@@ -92,13 +92,17 @@ describe Application do
 
   context 'GET /user/fail_login' do
     it "returns 200 and returns a fail login message" do
-      response = get('/user/fail_login')
+      response = get('/fail_login')
       expect(response.status).to eq(200)
-      expect(response.body).to eq('<p>Your login attempt was not successful. Please check your credentials and try again.</p>')
+      expect(response.body).to include('<p>Your login attempt was not successful. Please check your credentials and try again.</p>')
     end
   end
 
-#   context 'POST /login' do
-#     it "returns 200 and should allow the user to go on to the next page (properties)" do
-#       response = post('/login', email)
-# end
+  context 'POST /login' do
+    it "returns 200 and should allow the user to go on to the next page (properties)" do
+      response = post('/login', email: "jane@example.com", password: "pass")
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Here is a property you can book</h1>")
+    end
+  end
+end

@@ -153,23 +153,23 @@ class Application < Sinatra::Base
     return erb(:fail_login)
   end
 
-  post '/user/fail_login' do
-      user = UserRepository.new.find_by_email(params[:email])
+  # post '/user/fail_login' do
+  #     user = UserRepository.new.find_by_email(params[:email])
     
-      if user.nil? || params[:email].empty? || params[:password].empty?
-        @error_message = "That email address wasn't found."
-        status 401
-        return erb(:failed_login)
-      end
+  #     if user.nil? || params[:email].empty? || params[:password].empty?
+  #       @error_message = "That email address wasn't found."
+  #       status 401
+  #       return erb(:failed_login)
+  #     end
     
-      if BCrypt::Password.new(user.password).is_password?(params[:password])
-        session[:user_id] = user.id
-        session[:user_name] = user.name
-        redirect '/properties' # Redirect to the properties page
-      else
-        @error_message = "That password wasn't correct."
-        status 401
-        return erb(:failed_login)
-    end
-  end
+  #     if BCrypt::Password.new(user.password).is_password?(params[:password])
+  #       session[:user_id] = user.id
+  #       session[:user_name] = user.name
+  #       redirect '/properties' # Redirect to the properties page
+  #     else
+  #       @error_message = "That password wasn't correct."
+  #       status 401
+  #       return erb(:failed_login)
+  #   end
+  # end
 end

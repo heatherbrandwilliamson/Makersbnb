@@ -1,88 +1,85 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <style>
-    /* CSS Styles */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-    
-    h1 {
-      color: #333333;
-      text-align: center;
-    }
-    
-    .property-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 20px;
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      margin-top: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .property-name {
-      font-weight: bold;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    
-    .description {
-      color: #666666;
-      margin-bottom: 5px;
-    }
-    
-    .location {
-      color: #888888;
-      margin-bottom: 5px;
-    }
-    
-    .price {
-      color: #ff0000;
-      font-size: 20px;
-    }
-    
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #f44336;
-      color: #ffffff;
-      font-size: 16px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
-    }
-    
-    .button:hover {
-      background-color: #df362c;
-    }
-  </style>
-</head>
-<body>
-  <h1>Here is a property you can book</h1>
-  <div class="property-container">
-    <p class="property-name">Property: <%= @property.property_name%></p>
-    <p><img src="<%= @property.image_url %>" width="600"></p>
-    <p class="description">Description: <%= @property.description %></p>
-    <p class="location">Location: <%= @property.location %></p>
-    <p class="price">Price per night: £<%= @property.price %></p>
-    <ul>
-      <form method="post" action="/bookings">
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      
+      h1 {
+        color: #333333;
+        text-align: center;
+      }
+      
+      .property-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        margin-top: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .property-name {
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      
+      .description {
+        color: #666666;
+        margin-bottom: 5px;
+      }
+      
+      .location {
+        color: #888888;
+        margin-bottom: 5px;
+      }
+      
+      .price {
+        color: #ff0000;
+        font-size: 20px;
+      }
+      
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #f44336;
+        color: #ffffff;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 15px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .button:hover {
+        background-color: #df362c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Here is a property you can book</h1>
+      <div>
+        <p>Property: <%= @property.property_name%></p>
+        <p><img src="<%= @property.image_url %>" width="600"></p>
+        <p>Description: <%= @property.description %></p>
+        <p>location: <%= @property.location %></p>
+        <p>Price per night: £<%= @property.price %></p>
+        <ul>
+        <form method="post" action="/bookings">
         <input type="hidden" id="property_id" name="property_id" value="<%= @property.id %>" />
         <input type="hidden" id="host_id" name="host_id" value="<%= @property.user_id %>" />
         <% @available_dates.each do |date| %>
-          <li>
-            <input type="submit" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>">
-          </li>
+        <li>
+        <input type="submit" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>">
+        </li>
         <% end %>
-      </form>
-    </ul>
-  </div> 
-</body>
+        </form>
+        </ul>
+        
+      </div> 
+  </body>
 </html>

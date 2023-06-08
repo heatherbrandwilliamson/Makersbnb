@@ -105,4 +105,14 @@ describe Application do
       expect(response.body).to include("")
     end
   end
+
+  context 'GET /user' do
+    it "returns 200 and renders the register template" do
+      get '/user'
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include('<h1>Welcome to MakersBnB!</h1>')
+      expect(last_response.body).to include('class="form-container"')
+    end
+  end
 end

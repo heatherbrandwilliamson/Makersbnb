@@ -13,7 +13,7 @@ class DatabaseConnection
 
   def self.connect
     if ENV['ENV'] == 'test'
-      ENV['DB_NAME'] = 'makersbnb_booking_availability_test'
+      ENV['DB_NAME'] = 'makersbnb_test'
     else
       ENV['DB_NAME'] = 'makersbnb'
     end

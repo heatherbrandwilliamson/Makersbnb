@@ -115,4 +115,12 @@ describe Application do
       expect(last_response.body).to include('class="form-container"')
     end
   end
+
+  context 'POST /user' do
+    it 'creates a new user and renders the successful_registration template' do
+      response = post('/user', name: 'Jane', email: 'jane@example.com', phone_number: '1234567890', password: 'pass')
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Successfully Registered!</h1>")
+    end
+  end
 end

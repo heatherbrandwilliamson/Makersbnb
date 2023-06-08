@@ -62,7 +62,6 @@ class Application < Sinatra::Base
     
   get '/bookings/approve' do
     repo = BookingRepository.new
-    binding.irb
     @bookings = repo.find_unapproved(session[:user_id])
    
     return erb(:booking_approval)

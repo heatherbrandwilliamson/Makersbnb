@@ -123,4 +123,12 @@ describe Application do
       expect(response.body).to include("<h1>Successfully Registered!</h1>")
     end
   end
+
+  context 'GET /index.html' do
+    it 'should render the index template' do
+      response = get('/index.html')
+      expect(response.body).to include('<h1>Welcome to MakersBnB!</h1>')
+      expect(response.body).to include('<p>Let #TeamHibiscus help you find unique places to stay and experience amazing destinations.</p>')
+    end
+  end
 end

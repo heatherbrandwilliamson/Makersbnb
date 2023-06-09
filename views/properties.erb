@@ -66,6 +66,9 @@
   </head>
   <body>
     <h1>Properties</h1>
+    <% if @bookings.length > 0 %>
+    <a href="/bookings/approve" class="view-button">You have bookings to approve</a>
+    <% end %>
     <h2>Properties available for booking</h2>
     <h3><a href="/properties/new">Got a property you want to list? Click here</a></h3>
     <% @properties.each do |property| %>

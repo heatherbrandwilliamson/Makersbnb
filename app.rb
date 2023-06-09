@@ -132,52 +132,47 @@ class Application < Sinatra::Base
   #
   post '/user/login' do
     user = UserRepository.new.find_by_email(params[:email])
-    if user == nil || params[:email].empty? || params[:password].empty?
+    if user.nil? || params[:email].empty? || params[:password].empty?
       @error_message = "That email address wasn't found."
       status 401
-      return erb(:failed_login)
+      return erb(:login)
     end
-
-    if BCrypt::Password.new(user.password).is_password? params[:password]
+  
+    if BCrypt::Password.new(user.password).is_password?(params[:password])
       session[:user_id] = user.id
       session[:user_name] = user.name
-      redirect '/properties' #change this to properties#
+      redirect '/properties'
     else
       @error_message = "That password wasn't correct."
       status 401
-      return erb(:failed_login)
+      return erb(:login)
     end
   end
 
   ## THIS IS AN ISSUE THAT NEEDS RESOLVING ASAP. WHETHER A USER ## ##
   ## PASSES A LOGIN DETAIL CORRECTLY OR INCORRECTLY THE PAGE    ## ##
   ## REFRESHES                                                  ## ##
-  get '/user/login' do
-    return erb(:failed_login)
-  end
+  # get '/user/fail_login' do
+  #   return erb(:fail_login)
+  # end
 
-  post '/user/failed_login' do
-      user = UserRepository.new.find_by_email(params[:email])
+  # post '/user/fail_login' do
+  #     user = UserRepository.new.find_by_email(params[:email])
     
-      if user.nil? || params[:email].empty? || params[:password].empty?
-        @error_message = "That email address wasn't found."
-        status 401
-        return erb(:failed_login)
-      end
+  #     if user.nil? || params[:email].empty? || params[:password].empty?
+  #       @error_message = "That email address wasn't found."
+  #       status 401
+  #       return erb(:failed_login)
+  #     end
     
-      if BCrypt::Password.new(user.password).is_password?(params[:password])
-        session[:user_id] = user.id
-        session[:user_name] = user.name
-        redirect '/properties' # Redirect to the properties page
-      else
-        @error_message = "That password wasn't correct."
-        status 401
-        return erb(:failed_login)
-    end
-  end
-  
-##Check routing for this
-  get '/login' do
-    return erb(:login)
-  end
+  #     if BCrypt::Password.new(user.password).is_password?(params[:password])
+  #       session[:user_id] = user.id
+  #       session[:user_name] = user.name
+  #       redirect '/properties' # Redirect to the properties page
+  #     else
+  #       @error_message = "That password wasn't correct."
+  #       status 401
+  #       return erb(:failed_login)
+  #   end
+  # end
 end

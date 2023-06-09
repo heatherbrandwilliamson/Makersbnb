@@ -10,6 +10,7 @@ require_relative 'lib/availability'
 DatabaseConnection.connect
 
 class Application < Sinatra::Base
+  enable :sessions
   configure :development do
     register Sinatra::Reloader
   end
@@ -41,6 +42,7 @@ class Application < Sinatra::Base
     @property.description = params[:description]
     @property.price = params[:price]
     @property.user_id = params[:user_id]
+    @property.image_url = params[:image_url]
 
     repo = PropertyRepository.new
     repo.create(@property)
@@ -59,12 +61,27 @@ class Application < Sinatra::Base
     return erb(:booking_form)
   end
     
+  get '/bookings/approve' do
+    repo = BookingRepository.new
+    @bookings = repo.find_unapproved(session[:user_id])
+   
+    return erb(:booking_approval)
+  end
+
+  post '/bookings/approve' do
+    repo =BookingRepository.new
+    repo.confirm_booking(params[:booking_id])
+
+    return 'Booking Confirmed'
+  end
+
   post '/bookings' do
     booking = Booking.new
     booking.user_id = 1
     booking.property_id = params[:property_id]
     booking.date = params[:date]
-
+    booking.host_id = params[:host_id].to_i
+    
     repo = BookingRepository.new
     repo.create(booking)
 

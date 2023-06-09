@@ -164,7 +164,7 @@ describe Application do
   context 'GET /index.html' do
     it 'should render the index template' do
       response = get('/index.html')
-      expect(response.body).to include('<h2>MAKERS BNB</h2>')
+      expect(response.body).to include('MakersBnB')
     end
   end
 

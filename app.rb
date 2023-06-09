@@ -77,7 +77,7 @@ class Application < Sinatra::Base
 
   post '/bookings' do
     booking = Booking.new
-    booking.user_id = 1
+    booking.user_id = session[:user_id]
     booking.property_id = params[:property_id]
     booking.date = params[:date]
     booking.host_id = params[:host_id].to_i

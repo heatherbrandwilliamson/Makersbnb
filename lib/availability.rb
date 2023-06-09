@@ -5,7 +5,9 @@ class Availability
     booking_dates = []
 
     bookings.each do |booking|
-      booking_dates << booking.date
+      if booking.approved == "t"
+        booking_dates << booking.date
+      end
     end
 
     available_dates = date_range - booking_dates

@@ -29,7 +29,15 @@ describe BookingRepository do
       
       expect(bookings.length).to eq 3
       expect(bookings.first.user_id).to eq 1
-      expect(bookings.first.date).to eq "2023-05-27"
+      expect(bookings.first.date).to eq "2023-06-10"
+    end
+  end
+
+  describe "#find_unapproved" do
+    it "returns all unapproved bookings for the logged-in host" do
+      bookings = BookingRepository.new.find_unapproved(1)
+      expect(bookings.length).to eq 1
+
     end
   end
 end

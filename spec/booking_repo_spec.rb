@@ -25,11 +25,11 @@ describe BookingRepository do
   
   describe "#find_by_property_id" do
     it "returns all bookings for a specific property" do
-      bookings = BookingRepository.new.find_by_property_id(1)
+      bookings = BookingRepository.new.find_by_property_id(2)
       
-      expect(bookings.length).to eq 3
+      expect(bookings.length).to eq 1
       expect(bookings.first.user_id).to eq 1
-      expect(bookings.first.date).to eq "2023-06-10"
+      expect(bookings.first.date).to eq "2023-06-14"
     end
   end
 

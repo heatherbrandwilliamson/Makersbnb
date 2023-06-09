@@ -12,6 +12,12 @@ class DatabaseConnection
   using Rainbow
 
   def self.connect
+  
+    if ENV['DATABASE_URL'] != nil
+      @connection = PG.connect(ENV['DATABASE_URL'])
+      return
+    end
+  
     if ENV['ENV'] == 'test'
       ENV['DB_NAME'] = 'makersbnb_test'
     else

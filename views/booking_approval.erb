@@ -61,20 +61,13 @@
     </style>
   </head>
   <body>
-    <h1>Here is a property you can book</h1>
+    <h1>Here is a list of pending approvals</h1>
       <div>
-        <p>Property: <%= @property.property_name%></p>
-        <p><img src="<%= @property.image_url %>" width="600"></p>
-        <p>Description: <%= @property.description %></p>
-        <p>location: <%= @property.location %></p>
-        <p>Price per night: £<%= @property.price %></p>
         <ul>
-        <form method="post" action="/bookings">
-        <input type="hidden" id="property_id" name="property_id" value="<%= @property.id %>" />
-        <input type="hidden" id="host_id" name="host_id" value="<%= @property.user_id %>" />
-        <% @available_dates.each do |date| %>
+        <form method="post" action="/bookings/approve">
+        <% @bookings.each do |booking| %>
         <li>
-        <input type="submit" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>">
+        <%= booking.property_name %> on <%= Date.parse(booking.date).strftime('%e %b %Y') %>  <button name="booking_id" value="<%= booking.id %>">Approve</button>
         </li>
         <% end %>
         </form>

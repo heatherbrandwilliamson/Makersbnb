@@ -73,10 +73,28 @@ describe Application do
       expect(response.body).to include('<h1>Book your stay</h1>')
     end
   end
+  
+  context 'GET /bookings/approve' do
+    it "returns 200 and a list of pending approvals" do
+      post('/user/login', email: 'jane@example.com', password: 'pass') 
+      response = get('/bookings/approve')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Beach House')
+    end
+  end
+
+  context 'POST /bookings/approve' do
+    it "confirms a pending booking" do
+      response = post('/bookings/approve')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Booking Confirmed')
+    end
+  end
 
   context 'POST /bookings' do
     it "returns 200 and adds a new booking to the database" do
-      response = post('/bookings', property_id: 1, date: '25 June 2023')
+      
+      response = post('/bookings', property_id: 1, date: '25 June 2023', host_id: 1)
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Booking request sent</h1>')
     end

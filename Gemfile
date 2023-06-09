@@ -17,3 +17,5 @@ gem 'bcrypt', '~> 3.1.16'
 gem "simplecov", "~> 0.22.0"
 
 gem "simplecov-console", "~> 0.9.1"
+
+gem "rackup", "~> 1.0"

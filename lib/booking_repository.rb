@@ -27,10 +27,7 @@ class BookingRepository
   end
 
   def find_unapproved(host_id)
-    # Get the ID of the logged-in host => 1
-    # SELECT properties belonging to host
-    # 
-    #sql = 'SELECT id, user_id, property_id, date, approved, host_id FROM bookings WHERE approved = FALSE AND host_id = $1;'
+ 
     sql = 'SELECT bookings.id AS booking_id,
     bookings.user_id AS guest_id,
     bookings.property_id AS property_id,
@@ -58,7 +55,6 @@ class BookingRepository
       
       bookings << booking
     end
-
     return bookings
   end
 

@@ -16,7 +16,7 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    return erb(:index)
   end
 
   get '/properties/new' do
@@ -51,9 +51,12 @@ class Application < Sinatra::Base
   end
 
   get '/properties' do
+    repo = BookingRepository.new
+    @bookings = repo.find_unapproved(session[:user_id])
+    
     repo = PropertyRepository.new
     @properties = repo.all
-      return erb(:properties)
+    return erb(:properties)
   end
 
   get '/bookings/new/:id' do
@@ -77,7 +80,7 @@ class Application < Sinatra::Base
 
   post '/bookings' do
     booking = Booking.new
-    booking.user_id = 1
+    booking.user_id = session[:user_id]
     booking.property_id = params[:property_id]
     booking.date = params[:date]
     booking.host_id = params[:host_id].to_i

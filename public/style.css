@@ -9,12 +9,13 @@ body {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-size: 15px;
 }
 
 a:hover {
   text-decoration: underline;
+
 }
 
 a:focus {
@@ -22,11 +23,11 @@ a:focus {
 }
 
 a:visited {
-  color: #666;
+  color: #fff;
 }
 
 a:active {
-  color: #4f4949;
+  color: #fff;
 }
 
 img {
@@ -41,6 +42,7 @@ header {
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
 }
 
 header h1 {

@@ -149,11 +149,11 @@ class Application < Sinatra::Base
   ## THIS IS AN ISSUE THAT NEEDS RESOLVING ASAP. WHETHER A USER ## ##
   ## PASSES A LOGIN DETAIL CORRECTLY OR INCORRECTLY THE PAGE    ## ##
   ## REFRESHES                                                  ## ##
-  get '/user/fail_login' do
-    return erb(:fail_login)
+  get '/user/login' do
+    return erb(:failed_login)
   end
 
-  post '/user/fail_login' do
+  post '/user/failed_login' do
       user = UserRepository.new.find_by_email(params[:email])
     
       if user.nil? || params[:email].empty? || params[:password].empty?
@@ -172,4 +172,8 @@ class Application < Sinatra::Base
         return erb(:failed_login)
     end
   end
+
+#   get '/login' do
+#     return erb(:login)
+#   end
 end

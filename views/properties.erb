@@ -5,9 +5,10 @@
       /* CSS Styles */
       body {
         font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 20px;
+        background-image: url(https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 750px;
       }
       
       h1 {
@@ -26,6 +27,18 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         width: 200px;
         height: 150px;
+      }
+
+      .property-card1 {
+        background-color: #ffffff;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       
       .property-name {
@@ -65,10 +78,16 @@
     </style>
   </head>
   <body>
+
     <h1>Properties</h1>
+    <% if @bookings.length > 0 %>
+    <a href="/bookings/approve" class="view-button">You have bookings to approve</a>
+    <% end %>
     <h2>Properties available for booking</h2>
+
     <h3><a href="/properties/new">Got a property you want to list? Click here</a></h3>
     <% @properties.each do |property| %>
+    </div>
       <div class="property-card">
         <div class="property-name"><%= property.property_name %></div>
         <div class="property-description"><%= property.description %></div>

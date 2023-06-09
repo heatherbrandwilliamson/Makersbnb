@@ -11,24 +11,21 @@
      <div><a href="/user">TEXT</a></div>
      </div>
   </header>
-    <h1>Here is a property you can book</h1>
+    <h1><%= @property.property_name%></h1>
       <div>
-        <p>Property: <%= @property.property_name%></p>
         <p><img src="<%= @property.image_url %>" width="600"></p>
-        <p>Description: <%= @property.description %></p>
-        <p>location: <%= @property.location %></p>
-        <p>Price per night: £<%= @property.price %></p>
-        <ul>
+        <p><%= @property.description %></p>
+        <p><strong>Location:</strong> <%= @property.location %></p>
+        <p><strong>Price per night:</strong> £<%= @property.price %></p>
+        <h2>Choose a date</h2>
+  
         <form method="post" action="/bookings">
         <input type="hidden" id="property_id" name="property_id" value="<%= @property.id %>" />
         <input type="hidden" id="host_id" name="host_id" value="<%= @property.user_id %>" />
         <% @available_dates.each do |date| %>
-        <li>
-        <input type="submit" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>">
-        </li>
+        <p><input type="submit" class='view-button' style="margin-bottom: 10px; width: 150px;" name="date" id="property_<%= @property.id %>" value="<%= Date.parse(date).strftime('%e %b %Y') %>"></p>
         <% end %>
         </form>
-        </ul>
         
       </div> 
   </body>

@@ -75,7 +75,7 @@ class Application < Sinatra::Base
     repo =BookingRepository.new
     repo.confirm_booking(params[:booking_id])
 
-    return 'Booking Confirmed'
+    redirect '/bookings/approve'
   end
 
   post '/bookings' do

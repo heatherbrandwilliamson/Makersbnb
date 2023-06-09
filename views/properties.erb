@@ -4,14 +4,20 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
+         <header>
+     <div class="flex-container">
+     <div style="flex-basis: 65px"><a href="/"><img src="/Makers_logo.jpeg"></a></div>
+     <div> <h4>Makers bnb</h4></div>
+     <div style="align-self: center"><a href="/user/login">TEXT</a></div>
+     <div><a href="/properties/new">LISTINGS</a></div>
+     </div>
+  </header>
 
-    <h1>Properties</h1>
     <% if @bookings.length > 0 %>
     <a href="/bookings/approve" class="view-button">You have bookings to approve</a>
     <% end %>
     <h2>Properties available for booking</h2>
 
-    <h3><a href="/properties/new">Got a property you want to list? Click here</a></h3>
     <% @properties.each do |property| %>
     </div>
       <div class="property-card">
